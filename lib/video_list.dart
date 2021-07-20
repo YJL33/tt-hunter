@@ -30,7 +30,11 @@ class _VideoListState extends State<VideoList> {
       appBar: AppBar(
         title: const Text('Collections'),
       ),
-      body: ListView.separated(
+      body: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, // horizontally at most 2 children widget
+          childAspectRatio: 1.0
+        ),
         itemBuilder: (context, index) {
           return YoutubePlayer(
             key: ObjectKey(_controllers[index]),
@@ -47,7 +51,6 @@ class _VideoListState extends State<VideoList> {
           );
         },
         itemCount: _controllers.length,
-        separatorBuilder: (context, _) => const SizedBox(height: 10.0),
       ),
     );
   }
